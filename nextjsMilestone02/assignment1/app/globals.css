@@ -2,11 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+*{
+    margin: 0;
+    padding: 0;
+}
+html{
+    overflow-x: hidden;
+}
+body{
+    overflow-x: hidden;
+}
 .body {
     background-color: white;
     color: black;
     box-sizing: border-box;
     font-family: monospace;
+
 }
 
 .header {
@@ -21,7 +32,7 @@
 .logo {
     width: 30%;
     height: 100%;
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     padding: 10px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: bolder;
@@ -39,17 +50,24 @@ span {
 }
 
 .nav ul {
-    text-decoration: none;
+    list-style: none;
     display: flex;
     justify-content: end;
     padding-right: 20px;
     font-size: 1.5rem;
+    color: black;
 
 }
 
 .nav ul li {
+    color: black;
     padding: 20px;
     transition: 0.5s;
+}
+
+.nav ul li a{ 
+    text-decoration: none;
+    color: black;
 }
 
 .nav ul li:hover {
@@ -99,6 +117,10 @@ span {
     border: 2px solid rgb(17, 130, 205);
     transition: 0.5s;
 }
+.btn a{
+    text-decoration: none;
+    color: black;
+}
 
 .btn:hover {
     background-color: transparent;
@@ -129,36 +151,45 @@ span {
 }
 
 @media screen and (max-width:700px) {
+    .logo h1{
+        font-size: 2.2rem;
+        line-height: 70px;
+    }
     .menuIcon {
         display: block;
     }
 
     .main {
         justify-content: start;
+        align-items: start;
+        padding-left: 20px;
         padding-top: 70px;
 
     }
 
     .title {
         padding-top: 50px;
-        font-size: 2rem;
-        padding-left: 20px;
+        font-size: 2.2rem;
+        
     }
 
     .para {
         width: 90%;
-        font-size: 4vw;
-        padding-left: 10px;
+        font-size: 5vw;
+       
+        padding-top: 20px;
         text-align: start;
     }
 
     .page-title h1 {
         font-size: 2rem;
+        
     }
 
     .page-title p {
         font-size: 1rem;
         text-align: center;
+        padding: 0 10px;
     }
 
     .nav ul {

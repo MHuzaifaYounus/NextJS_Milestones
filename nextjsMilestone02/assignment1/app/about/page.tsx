@@ -20,8 +20,8 @@ export default function AboutPage() {
             <div className={cssStyle.right_about}>
                 <Image
                     src={"/static/aboutimg.png"}
-                    width={1200}
-                    height={1000}
+                    width={900}
+                    height={500}
                     alt='no image'
                 />
             </div>
