@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.body{
+    background-color: white;
+    color: black;
+    box-sizing: border-box;
+    font-family:monospace ;
+}
+.header{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    position: absolute;
+    top: 0;
+    background-color: transparent;
+}
+.logo{
+    width: 30%;
+    height: 100%;
+    font-size: 2.5rem;
+    padding: 10px;
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bolder;
+    /* background-color: red; */
+}
+span{
+    color: rgb(17, 130, 205);
+}
+.nav{
+    width: 70%;
+    height: 100%;
+    /* background-color: rgb(34, 162, 39); */
+}
+.nav ul{
+    text-decoration: none;
+    display: flex;
+    justify-content: end;
+    padding-right: 20px;
+    font-size: 1.5rem;
+    
+}
+.nav ul li{
+    padding: 20px;
+    transition: 0.5s;
+}
+.nav ul li:hover{
+    transform: scale(1.2);
+}
+.main{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image:url("/static/main.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+ 
+}
+.title{
+    font-size: 4rem;
+    font-weight: bolder;
+    color: rgb(17, 130, 205);
+}
+.para{
+    font-size: 1.4rem;
+    width: 50%;
+    text-align: center;
+
+}
+.btn{
+    background-color: rgb(17, 130, 205);
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin-top: 50px;
+    font-size: 1.3rem;
+    border: 2px solid rgb(17, 130, 205);
+    transition: 0.5s;
+}
+.btn:hover{
+    background-color: transparent;
+   
+}
+.page-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+.page-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 100px;
+
+}
+.page-title p{
+    border-top: 2px solid rgb(17, 130, 205);
+    font-size: 1.3rem;
+}
+
+@media screen and (max-width:700px) {
+    .main{
+        justify-content: start;
+
+    }
+    .title{
+        padding-top: 50px;
+        font-size: 2rem;
+        padding-left: 10px;
+    }
+    .para{
+        width: 90%;
+        font-size: 4vw;
+        padding-left: 10px;
+        text-align: start;
+    }
+    .page-title h1{
+        font-size: 2rem;
+    }
+    .page-title p{
+        font-size: 1rem;
+        text-align: center;
+    }
+    .nav ul {
+        display: none;
+    }
+    .logo{
+        width: 70%;
+    }
+    .nav{
+        width: 30%;
+    }
+}
