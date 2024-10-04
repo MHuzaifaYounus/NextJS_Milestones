@@ -2,13 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-.body{
+.body {
     background-color: white;
     color: black;
     box-sizing: border-box;
-    font-family:monospace ;
+    font-family: monospace;
 }
-.header{
+
+.header {
     width: 100%;
     height: 60px;
     display: flex;
@@ -16,62 +17,80 @@
     top: 0;
     background-color: transparent;
 }
-.logo{
+
+.logo {
     width: 30%;
     height: 100%;
     font-size: 2.5rem;
     padding: 10px;
-font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: bolder;
     /* background-color: red; */
 }
-span{
+
+span {
     color: rgb(17, 130, 205);
 }
-.nav{
+
+.nav {
     width: 70%;
     height: 100%;
     /* background-color: rgb(34, 162, 39); */
 }
-.nav ul{
+
+.nav ul {
     text-decoration: none;
     display: flex;
     justify-content: end;
     padding-right: 20px;
     font-size: 1.5rem;
-    
+
 }
-.nav ul li{
+
+.nav ul li {
     padding: 20px;
     transition: 0.5s;
 }
-.nav ul li:hover{
+
+.nav ul li:hover {
     transform: scale(1.2);
 }
-.main{
+
+.menuIcon {
+    display: none;
+    width: 50px;
+    height: 50px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.main {
     width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-image:url("/static/main.jpg");
+    background-image: url("/static/main.jpg");
     background-repeat: no-repeat;
     background-size: cover;
- 
+
 }
-.title{
+
+.title {
     font-size: 4rem;
     font-weight: bolder;
     color: rgb(17, 130, 205);
 }
-.para{
+
+.para {
     font-size: 1.4rem;
     width: 50%;
     text-align: center;
 
 }
-.btn{
+
+.btn {
     background-color: rgb(17, 130, 205);
     border-radius: 10px;
     padding: 10px 20px;
@@ -80,18 +99,21 @@ span{
     border: 2px solid rgb(17, 130, 205);
     transition: 0.5s;
 }
-.btn:hover{
+
+.btn:hover {
     background-color: transparent;
-   
+
 }
-.page-container{
+
+.page-container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 
 }
-.page-title{
+
+.page-title {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -100,41 +122,61 @@ span{
     padding-top: 100px;
 
 }
-.page-title p{
+
+.page-title p {
     border-top: 2px solid rgb(17, 130, 205);
     font-size: 1.3rem;
 }
 
 @media screen and (max-width:700px) {
-    .main{
+    .menuIcon {
+        display: block;
+    }
+
+    .main {
         justify-content: start;
+        padding-top: 70px;
 
     }
-    .title{
+
+    .title {
         padding-top: 50px;
         font-size: 2rem;
-        padding-left: 10px;
+        padding-left: 20px;
     }
-    .para{
+
+    .para {
         width: 90%;
         font-size: 4vw;
         padding-left: 10px;
         text-align: start;
     }
-    .page-title h1{
+
+    .page-title h1 {
         font-size: 2rem;
     }
-    .page-title p{
+
+    .page-title p {
         font-size: 1rem;
         text-align: center;
     }
+
     .nav ul {
-        display: none;
+        width: 50%;
+        position: absolute;
+        flex-direction: column;
+        right: 40px;
+        border-radius: 10px;
+        background-color:rgb(11, 153, 248) ;
+        border: 2px solid rgb(17, 130, 205) ;
+        transition: 0.5s;
     }
-    .logo{
+
+    .logo {
         width: 70%;
     }
-    .nav{
+
+    .nav {
         width: 30%;
     }
 }
