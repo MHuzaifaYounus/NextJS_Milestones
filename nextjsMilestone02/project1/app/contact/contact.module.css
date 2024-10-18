@@ -1,0 +1,192 @@
+.contact {
+    height: 91vh;
+    padding-top: 40px;
+}
+
+.contactContainer {
+    border: 2px solid #f83d3d;
+    width: 80%;
+    min-height: 800px;
+    border-radius: 10px;
+    margin: auto;
+    box-shadow: 10px 10px 30px -20px #f83d3d;
+}
+
+.title {
+    height: 100px;
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+    text-align: center;
+    background: #f83d3d19;
+}
+
+.title h1 {
+    line-height: 100px;
+}
+
+.subContainer {
+    min-height: 700px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.contactDetails {
+    height: 500px;
+    width: 30%;
+}
+
+.contactDetails h1 {
+    font-size: 2rem;
+}
+
+.contactDetailBox {
+    height: 40px;
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 350px;
+}
+
+.contactDetailBox h2 {
+    font-weight: 300;
+}
+
+.contactDetailBox .icon {
+    height: 50px;
+    width: 50px;
+    border: 2px solid white;
+    border-radius: 100%;
+    font-size: 1.4rem;
+    color: #F83D3D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.iconsBox {
+    width: 200px;
+    font-size: 30px;
+    display: flex;
+    cursor: pointer;
+    margin-top: 100px;
+    margin-left: 10px;
+    justify-content: space-between;
+}
+
+.iconsBox a {
+    transition: 0.3s;
+
+}
+
+.iconsBox a:hover {
+    transform: scale(1.1);
+    color: #F83D3D;
+}
+
+
+
+
+.contactForm {
+    height: 600px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    
+}
+
+.contactForm label {
+    color: white;
+    margin-top: 50px;
+    display: block;
+}
+
+.contactForm input {
+    border: 1px solid #f83d3d;
+    background-color: #f83d3d4b;
+    height: 50px;
+    width: 90%;
+    margin: auto;
+    margin-top: 10px;
+    outline: none;
+    border-radius: 10px;
+    color: white;
+    padding-left: 10px;
+}
+
+.contactForm textarea {
+    border: 1px solid #f83d3d;
+    background-color: #f83d3d4b;
+    height: 140px;
+    width: 90%;
+    margin: auto;
+    margin-top: 10px;
+    outline: none;
+    border-radius: 10px;
+    color: white;
+    padding: 10px 10px;
+}
+
+.contactForm .btn {
+    width: 90%;
+    padding: 10px 0;
+    outline: none;
+    font-size: 1.2rem;
+    color: white;
+    font-weight: 500;
+    margin-top: 10px;
+    border-radius: 20px;
+    transition: 0.5s;
+    cursor: pointer;
+    background-color: #f83d3d;
+}
+
+.contactForm .btn:hover {
+    background-color: transparent;
+
+    border: 1px solid #f83d3d;
+
+}
+@media screen and (max-width:1400px) {
+    .subContainer{
+        flex-direction: column;
+    }
+    .contactDetails{
+        padding-top: 50px;
+    }
+}
+@media screen and (max-width:850px) {
+    .title h1{
+        font-size: 1.4rem;
+    }
+    .contactDetails{
+       width: 90%;
+    }
+    .contactForm{
+        width: 90%;
+    }
+}
+@media screen and (max-width:450px) {
+    .contactForm input ,.contactForm textarea{
+        width: 100%;
+    }
+    .contactContainer{
+        width: 100%;
+    }
+    .title h1{
+        font-size: 1.2rem;
+    }
+    .contactDetails h1{
+        font-size: 2rem;
+     }
+     .contactDetailBox{
+        width: 90%;
+     }
+.contactDetailBox h2 {
+    font-size: 1.2rem;
+}
+
+}
