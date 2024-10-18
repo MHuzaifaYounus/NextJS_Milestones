@@ -24,7 +24,7 @@ export default function Home() {
       </div>
       <div className=" w-[40%]   mt-[-90px] flex justify-center items-start max-xl:w-[90%] max-xl:pb-10 max-[450px]:pt-10 ">
         <Image className='rounded-full border-4 border-primary 
-        ' src={"/static/main.png "} alt='no found' width={500} height={500}></Image>
+        ' src={"/static/main.png"} alt='no found' width={500} height={500}></Image>
       </div>
     </div>
   );
