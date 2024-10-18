@@ -26,7 +26,7 @@ const Projects = () => {
                 </div>
                 <div className={styles.card}>
                     <div className={styles.cardImg}>
-                    <Image src={"/static/ts.jfif"} alt="no found" width={300} height={200}></Image>
+                    <Image src={"/static/ts.webp"} alt="no found" width={300} height={200}></Image>
 
                     </div>
                     <div className={styles.cardBody}>
