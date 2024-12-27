@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.active{
+  border-bottom: 1px solid black;
+}
+.box_shadow{
+box-shadow: 0px 1px 13px 0px rgba(0, 0, 0, 0.05);
+
+}
+span{
+color: #DB4444;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}
