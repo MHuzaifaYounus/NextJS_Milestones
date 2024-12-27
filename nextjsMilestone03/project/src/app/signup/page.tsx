@@ -7,11 +7,11 @@ import React from 'react'
 
 const SignUp = () => {
   return (
-    <div className='w-full flex justify-between items-center mt-20 mb-20 max-md:flex-col'>
-      <div className="img max-lg:w-[50%] max-sm:w-full">
-        <Image src={"/img/signup_side.svg"} alt='no img found' width={805} height={781}></Image>
+    <div className='w-[80%] max-sm:w-full max-lg:pb-4  m-auto border-2 border-mysecondary rounded-3xl overflow-hidden flex justify-between items-center mt-20 mb-20 max-lg:flex-col'>
+      <div className="img w-[50%] max-sm:w-full">
+        <Image src={"/img/signup_side.png"} alt='no img found' width={800} height={781}></Image>
       </div>
-      <div className="right w-[50%] flex justify-center max-md:pt-10 max-sm:w-full">
+      <div className="right w-[50%] flex justify-center max-md:pt-10 max-sm:w-full  max-lg:pt-4">
         <div className="form w-[371px] h-[530px] flex flex-col justify-between max-sm:w-90% max-sm:px-4">
           <h1 className='font-medium text-4xl max-sm:text-3xl'>Create an account</h1>
           <p>Enter your details below</p>

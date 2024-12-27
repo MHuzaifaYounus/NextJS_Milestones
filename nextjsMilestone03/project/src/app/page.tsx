@@ -155,8 +155,6 @@ export default function Home() {
         </div>
 
       </div>
-
-
       <div className="section6 w-[69%] min-h-[600px] mb-3 m-auto pt-12 max-xl:w-[90%]">
         <div className="top text-secondary font-bold flex items-center">
           <div className="w-1 h-14 bg-mysecondary rounded-md"></div>
@@ -181,11 +179,11 @@ export default function Home() {
           </div>
           <div className="bg-black relative col-span-2 flex justify-end max-sm:col-span-1 max-sm:row-span-1">
             <div className="absolute left-10 bottom-10 w-[242px] text h-[122px] flex flex-col justify-between items-start text-white">
-              <h1 className="text-2xl font-semibold">Womens Collection</h1>
-              <p className="text-sm">Featured woman collections that give you another vibe.</p>
+              <h1 className="text-2xl font-semibold">Laptops Collection</h1>
+              <p className="text-sm">Featured Another level of Quality Products</p>
               <button className="font-medium underline">Shop Now</button>
             </div>
-            <Image src={"/img/frame62.svg"} alt="no img found" width={432} height={266}></Image>
+            <Image src={"/img/frame62.jpg"} alt="no img found" width={432} height={266}></Image>
           </div>
           <div className="bg-black relative flex justify-center items-center max-lg:col-span-2 max-sm:col-span-1 max-sm:row-span-1">
             <div className="absolute left-10 max-xl:left-5 bottom-10 w-[242px] text h-[85px] flex flex-col justify-between items-start text-white">
@@ -206,26 +204,27 @@ export default function Home() {
 
 
         </div>
+
         <div className="w-full flex justify-evenly items-center mt-20 mb-20 flex-wrap ">
           <div className="item w-[249px] h-[161px] flex flex-col justify-between items-center mt-10">
             <div className="w-[80px] h-[80px] rounded-full bg-black border-8 border-gray-400 flex justify-center items-center">
               <Image src={"/icons/Icon-secure.svg"} alt="no icon found" width={40} height={40}></Image>
             </div>
-            <h1 className="font-semibold text-xl">24/7 CUSTOMER SERVICE</h1>
+            <h1 className="font-semibold text-xl text-center">24/7 CUSTOMER SERVICE</h1>
             <p className="text-sm">Friendly 24/7 customer support</p>
           </div>
           <div className="item w-[249px] h-[161px] flex flex-col justify-between items-center mt-10">
             <div className="w-[80px] h-[80px] rounded-full bg-black border-8 border-gray-400 flex justify-center items-center">
               <Image src={"/icons/Icon-Customer.svg"} alt="no icon found" width={40} height={40}></Image>
             </div>
-            <h1 className="font-semibold text-xl">MONEY BACK GUARANTEE</h1>
+            <h1 className="font-semibold text-xl text-center">MONEY BACK GUARANTEE</h1>
             <p className="text-sm">We reurn money within 30 days</p>
           </div>
           <div className="item w-[249px] h-[161px] flex flex-col justify-between items-center mt-10 ">
             <div className="w-[80px] h-[80px] rounded-full bg-black border-8 border-gray-400 flex justify-center items-center">
               <Image src={"/icons/icon-delivery.svg"} alt="no icon found" width={40} height={40}></Image>
             </div>
-            <h1 className="font-semibold text-xl">FREE AND FAST DELIVERY</h1>
+            <h1 className="font-semibold text-xl text-center">FREE AND FAST DELIVERY</h1>
             <p className="text-sm">Free delivery for all orders over $140</p>
           </div>
 
