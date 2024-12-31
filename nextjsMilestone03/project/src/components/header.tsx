@@ -38,7 +38,7 @@ const Header = () => {
         <ul className="flex justify-between items-center w-[33.3%] h-6 ">
           <li className="active hover:text-mysecondary transition-all"><Link href={"/"}>Home</Link></li>
           <li className=' hover:text-mysecondary transition-all'><Link href={"/products"}>Products</Link></li>
-          <li className=' hover:text-mysecondary transition-all'><Link href={"/"}>Contact</Link></li>
+          <li className=' hover:text-mysecondary transition-all'><Link href={"/contact"}>Contact</Link></li>
           <Button className='bg-mysecondary text-white hover:text-black' variant={"secondary"} color='black'><Link href={"/signup"}>Sign Up</Link></Button>
         </ul>
 
@@ -48,7 +48,7 @@ const Header = () => {
         <ul className="flex flex-col justify-evenly bg-black text-white w-full items-center h-[300px] ">
           <li className="active"><Link href={"/"}>Home</Link></li>
           <li><Link href={"/products"}>Products</Link></li>
-          <li><Link href={"/"}>Contact</Link></li>
+          <li><Link href={"/contact"}>Contact</Link></li>
           <Button className='bg-mysecondary text-white hover:text-black' variant={"secondary"} color='black'><Link href={"/signup"}>Sign Up</Link></Button>
 
 

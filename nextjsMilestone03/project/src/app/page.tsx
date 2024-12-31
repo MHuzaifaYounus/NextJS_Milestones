@@ -4,9 +4,14 @@ import {
   CardContent,
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button";
-import ProductCARD from "@/components/productCard";
+import FeaturedProducts from "@/components/featuredProducts";
+import Link from "next/link";
+
+
+
 
 export default function Home() {
+ 
   return (
     <div>
       <div className="slider w-full min-h-[500px] pb-14 pt-10">
@@ -37,16 +42,10 @@ export default function Home() {
           </div>
 
         </div>
-        <div className="items-box w-full flex justify-between mt-4 flex-wrap max-sm:justify-center">
-          {Array.from({ length: 4 }).map((_, index) => (
-            <ProductCARD key={index} isDiscont={true} />
-
-          ))}
-
-        </div>
+        <FeaturedProducts featureType="Sale" />
 
         <div className="w-full flex justify-center">
-          <Button className="font-medium bg-mysecondary mt-10 mb-10 h-[56px] w-[234px]">View All Products</Button>
+          <Button className="font-medium bg-mysecondary mt-10 mb-10 h-[56px] w-[234px]"><Link href="/products">View All Products</Link></Button>
 
         </div>
 
@@ -112,16 +111,10 @@ export default function Home() {
         </div>
         <div className="title w-full flex justify-between mt-3 max-sm:flex-col max-sm:items-center">
           <h1 className="text-4xl font-semibold max-sm:text-3xl border-b-4 pb-4 border-mysecondary">Best Selling Products</h1>
-          <Button className="bg-mysecondary h-[56px] w-[159px] max-sm:w-[110px] max-sm:h-[40px] max-sm:mt-4">View All</Button>
+          <Button className="bg-mysecondary h-[56px] w-[159px] max-sm:w-[110px] max-sm:h-[40px] max-sm:mt-4"><Link href={"/products"}>View All</Link></Button>
 
         </div>
-        <div className="items-box w-full flex justify-between mt-4 flex-wrap max-sm:justify-center">
-          {Array.from({ length: 4 }).map((_, index) => (
-            <ProductCARD key={index} isDiscont={false} />
-
-          ))}
-
-        </div>
+        <FeaturedProducts featureType="Top" />
       </div>
       <div className="click_section w-[79%] max-xl:w-full max-lg:flex-col m-auto mt-20 mb-10 min-h-[500px] flex items-center justify-around bg-black text-white">
         <div className="text  w-[40%] min-h-[500px] flex flex-col pl-20 justify-evenly max-lg:w-full max-lg:h-[400px] max-sm:pl-2 max-sm:items-center">
@@ -163,7 +156,7 @@ export default function Home() {
         <div className="title w-full flex justify-between mt-3 max-sm:flex-col max-sm:items-center">
           <h1 className="text-4xl font-semibold max-sm:text-3xl border-b-4 pb-4 border-mysecondary">Shop Like Billiniore</h1>
           <div className="text-3xl font-semibold">
-            <Button className=" font-medium border-2 border-mysecondary" variant={"ghost"}>Don't Miss the oportunity</Button>
+            <Button className=" font-medium border-2 border-mysecondary" variant={"ghost"}>Dont Miss the oportunity</Button>
           </div>
 
         </div>
