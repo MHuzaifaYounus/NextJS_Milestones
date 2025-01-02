@@ -43,7 +43,7 @@ const FeaturedProducts = ({ featureType }: { featureType: "Sale" | "Top" }) => {
     }, [])
 
     return (
-        <div className="items-box w-full flex justify-between mt-4 flex-wrap max-sm:justify-center">
+        <div className="items-box w-full flex  mt-4 flex-wrap max-sm:justify-center">
 
             {products.map((product, index) => {
                 if (featureType === "Sale") {

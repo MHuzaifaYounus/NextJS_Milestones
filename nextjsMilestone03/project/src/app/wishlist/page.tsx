@@ -1,16 +1,70 @@
-
-import React from 'react'
-import Image from "next/image";
-import {
-    Card,
-    CardContent,
-    CardHeader,
-} from "@/components/ui/card"
+"use client"
+import React, { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button';
+import { WishlistProducts } from '../global';
+import { client } from '@/sanity/lib/client';
+import ProductCARD from '@/components/productCard';
+import { Card } from '@/components/ui/card';
 
 
+interface Products {
+    id: number,
+    title: string,
+    price: number,
+    description: string,
+    image: string,
+    rating: { rate: number, count: number }
+    category: string,
+    stock: number,
+    isDiscont: boolean,
+    discount?: number
+}
 
 const WishList = () => {
+
+    const [products, setProducts] = useState<Products[]>([])
+    const [wishlistproducts, setWishlistProducts] = useState<Products[]>([])
+    const [isLoading, setIsLoading] = useState<boolean>(true)
+
+    useEffect(() => {
+        async function getData() {
+            const data: Products[] = await client.fetch(`*[_type == "product"]{
+     id,
+     title,
+     price,
+     description,
+     category,
+     stock,
+     isDiscont,
+     discount,
+     "image": image.asset->url,
+     rating {
+       rate,
+       count
+     }
+   }
+   `)
+            setProducts(data)
+            setIsLoading(false)
+        }
+        getData()
+    }, [])
+    useEffect(() => {
+        console.log("Products change");
+        products.forEach((product) => {
+            WishlistProducts.forEach((productId) => {
+                if (product.id === productId) {
+                    setWishlistProducts((prev) => {
+                        if (!prev.some(item => item.id === product.id)) {
+                            return [...prev, product];
+                        }
+                        return prev;
+                    });
+                }
+            });
+        });
+    }, [products, WishlistProducts])
+
     return (
         <div>
             <div className="section1 w-[79%] pt-10 m-auto pb-20 max-sm:w-[90%]">
@@ -18,81 +72,29 @@ const WishList = () => {
                     <h1 className='text-xl'>WishList(4)</h1>
                     <Button className='w-[223px] h-[56px] border border-gray-400 font-semibold max-sm:w-[120px] max-sm:h-[40px] max-sm:p-4' variant={"secondary"}>Move All To Bag</Button>
                 </div>
-                <div className="items w-full mt-10 flex flex-wrap justify-between max-sm:justify-center">
-                    <Card className="overflow-hidden w-[270px] mt-10">
-                        <CardHeader className="w-[270px] h-[250px] bg-myGray flex justify-center items-center relative">
-                            <Button className="absolute top-2 left-2 bg-mysecondary" size={"sm"}>-30%</Button>
-                            <Button className="absolute top-2 right-2 max-sm:right-4 rounded-full" variant={"secondary"} size={"sm"}>
-                                <Image src={"/icons/icon-delete.svg"} alt="no icon found" width={24} height={24}></Image>
-                            </Button>
-                            <Button className="absolute bottom-0 left-0 w-full h-[41px] rounded-none font-medium ">
-                                Add to cart
-                            </Button>
+                {isLoading ? <div className="items w-full mt-10 flex flex-wrap justify-between max-sm:justify-center">
+                    <Card className="overflow-hidden w-[350px] h-[500px] mt-10 bg-gray-400 animate-pulse duration-1000">
 
-                            <Image src={"/img/frame42.svg"} alt="no img found" width={190} height={180}></Image>
-                        </CardHeader>
-                        <CardContent>
-                            <h2 className="font-medium pt-3">Gucci duffle bag</h2>
-                            <p className="text-mysecondary font-medium">$960 <span className="text-gray-600 line-through">$1100</span></p>
-
-
-                        </CardContent>
                     </Card>
-                    <Card className="overflow-hidden w-[270px] mt-10">
-                        <CardHeader className="w-[270px] h-[250px] bg-myGray flex justify-center items-center relative">
+                    <Card className="overflow-hidden w-[350px] h-[500px] mt-10 bg-gray-400 animate-pulse duration-1000">
 
-                            <Button className="absolute top-2 right-2 max-sm:right-4 rounded-full" variant={"secondary"} size={"sm"}>
-                                <Image src={"/icons/icon-delete.svg"} alt="no icon found" width={24} height={24}></Image>
-                            </Button>
-                            <Button className="absolute bottom-0 left-0 w-full h-[41px] rounded-none font-medium ">
-                                Add to cart
-                            </Button>
-
-                            <Image src={"/img/frame43.svg"} alt="no img found" width={190} height={180}></Image>
-                        </CardHeader>
-                        <CardContent>
-                            <h2 className="font-medium pt-3">RGB liquid CPU Cooler</h2>
-                            <p className="text-mysecondary font-medium">$1260</p>
-
-                        </CardContent>
                     </Card>
-                    <Card className="overflow-hidden w-[270px] mt-10">
-                        <CardHeader className="w-[270px] h-[250px] bg-myGray flex justify-center items-center relative">
+                    <Card className="overflow-hidden w-[350px] h-[500px] mt-10 bg-gray-400 animate-pulse duration-1000">
 
-                            <Button className="absolute top-2 right-2 max-sm:right-4 rounded-full" variant={"secondary"} size={"sm"}>
-                                <Image src={"/icons/icon-delete.svg"} alt="no icon found" width={24} height={24}></Image>
-                            </Button>
-                            <Button className="absolute bottom-0 left-0 w-full h-[41px] rounded-none font-medium ">
-                                Add to cart
-                            </Button>
-
-                            <Image src={"/img/frame57.svg"} alt="no img found" width={190} height={180}></Image>
-                        </CardHeader>
-                        <CardContent>
-                            <h2 className="font-medium pt-3">GP11 Shooter USB Gamepad</h2>
-                            <p className="text-mysecondary font-medium">$560</p>
-
-                        </CardContent>
                     </Card>
-                    <Card className="overflow-hidden w-[270px] mt-10">
-                        <CardHeader className="w-[270px] h-[250px] bg-myGray flex justify-center items-center relative">
+                    <Card className="overflow-hidden w-[350px] h-[500px] mt-10 bg-gray-400 animate-pulse duration-1000">
 
-                            <Button className="absolute top-2 right-2 max-sm:right-4 rounded-full" variant={"secondary"} size={"sm"}>
-                                <Image src={"/icons/icon-delete.svg"} alt="no icon found" width={24} height={24}></Image>
-                            </Button>
-                            <Button className="absolute bottom-0 left-0 w-full h-[41px] rounded-none font-medium ">
-                                Add to cart
-                            </Button>
-
-                            <Image src={"/img/frame58.svg"} alt="no img found" width={190} height={180}></Image>
-                        </CardHeader>
-                        <CardContent>
-                            <h2 className="font-medium pt-3">Quilted Satin Jacket</h2>
-                            <p className="text-mysecondary font-medium">$740</p>
-
-                        </CardContent>
                     </Card>
-                </div>
+                </div> :
+                    <div className="items w-full mt-10 flex flex-wrap  max-sm:justify-center">
+                        {
+                            wishlistproducts.map((product, index) => {
+                                return <ProductCARD key={index} id={product.id} isDiscont={product.isDiscont} title={product.title} price={product.price} description={product.description} image={product.image} rate={product.rating.rate} count={product.rating.count} stock={product.stock} category={product.category} discount={product.discount} />
+
+                            })
+
+                        }
+                    </div>}
 
             </div>
             <div className="section2 w-[79%] pt-10 m-auto pb-20 max-sm:w-[90%]">
@@ -103,116 +105,31 @@ const WishList = () => {
                     </div>
                     <Button className='w-[150px] h-[56px] border border-gray-400 font-semibold max-sm:w-[120px] max-sm:h-[40px] max-sm:p-4' variant={"secondary"}>Sell All</Button>
                 </div>
-                <div className="items w-full mt-10 flex flex-wrap justify-between max-sm:justify-center">
-                    <Card className="overflow-hidden w-[270px] mt-10">
-                        <CardHeader className="w-[270px] h-[250px] bg-myGray flex justify-center items-center relative">
-                            <Button className="absolute top-2 left-2 bg-mysecondary" size={"sm"}>-30%</Button>
-                            <Button className="absolute top-2 right-2 max-sm:right-4 rounded-full" variant={"secondary"} size={"sm"}>
-                                <Image src={"/icons/eye.svg"} alt="no icon found" width={24} height={24}></Image>
-                            </Button>
-                            <Button className="absolute bottom-0 left-0 w-full h-[41px] rounded-none font-medium ">
-                                Add to cart
-                            </Button>
+                {isLoading ? <div className="items w-full mt-10 flex flex-wrap justify-between max-sm:justify-center">
+                    <Card className="overflow-hidden w-[350px] h-[500px] mt-10 bg-gray-400 animate-pulse duration-1000">
 
-                            <Image src={"/img/frame53.svg"} alt="no img found" width={190} height={180}></Image>
-                        </CardHeader>
-                        <CardContent>
-                            <h2 className="font-medium pt-3">Gucci duffle bag</h2>
-                            <p className="text-mysecondary font-medium">$960 <span className="text-gray-600 line-through">$1100</span></p>
-                            <div className="stars w-[140px] flex pt-2">
-                                <Image src={"/icons/fillstar.svg"} alt='no icon found' height={18} width={18}></Image>
-                                <Image src={"/icons/fillstar.svg"} alt='no icon found' height={18} width={18}></Image>
-                                <Image src={"/icons/fillstar.svg"} alt='no icon found' height={18} width={18}></Image>
-                                <Image src={"/icons/fillstar.svg"} alt='no icon found' height={18} width={18}></Image>
-                                <Image src={"/icons/fillstar.svg"} alt='no icon found' height={18} width={18}></Image>
-
-                                <p className="text-gray-600">(89)</p>
-                            </div>
-
-                        </CardContent>
                     </Card>
-                    <Card className="overflow-hidden w-[270px] mt-10">
-                        <CardHeader className="w-[270px] h-[250px] bg-myGray flex justify-center items-center relative">
+                    <Card className="overflow-hidden w-[350px] h-[500px] mt-10 bg-gray-400 animate-pulse duration-1000">
 
-                            <Button className="absolute top-2 right-2 max-sm:right-4 rounded-full" variant={"secondary"} size={"sm"}>
-                                <Image src={"/icons/eye.svg"} alt="no icon found" width={24} height={24}></Image>
-                            </Button>
-                            <Button className="absolute bottom-0 left-0 w-full h-[41px] rounded-none font-medium ">
-                                Add to cart
-                            </Button>
-
-                            <Image src={"/img/frame14.svg"} alt="no img found" width={190} height={180}></Image>
-                        </CardHeader>
-                        <CardContent>
-                            <h2 className="font-medium pt-3">RGB liquid CPU Cooler</h2>
-                            <p className="text-mysecondary font-medium">$1260</p>
-                            <div className="stars w-[140px] flex pt-2">
-                                <Image src={"/icons/fillstar.svg"} alt='no icon found' height={18} width={18}></Image>
-                                <Image src={"/icons/fillstar.svg"} alt='no icon found' height={18} width={18}></Image>
-                                <Image src={"/icons/fillstar.svg"} alt='no icon found' height={18} width={18}></Image>
-                                <Image src={"/icons/fillstar.svg"} alt='no icon found' height={18} width={18}></Image>
-                                <Image src={"/icons/star.svg"} alt='no icon found' height={18} width={18}></Image>
-
-                                <p className="text-gray-600">(89)</p>
-                            </div>
-
-                        </CardContent>
                     </Card>
-                    <Card className="overflow-hidden w-[270px] mt-10">
-                        <CardHeader className="w-[270px] h-[250px] bg-myGray flex justify-center items-center relative">
-                            <Button className="absolute top-2 left-2 bg-mytertiary" size={"sm"}>New</Button>
-                            <Button className="absolute top-2 right-2 max-sm:right-4 rounded-full" variant={"secondary"} size={"sm"}>
-                                <Image src={"/icons/eye.svg"} alt="no icon found" width={24} height={24}></Image>
-                            </Button>
-                            <Button className="absolute bottom-0 left-0 w-full h-[41px] rounded-none font-medium ">
-                                Add to cart
-                            </Button>
+                    <Card className="overflow-hidden w-[350px] h-[500px] mt-10 bg-gray-400 animate-pulse duration-1000">
 
-                            <Image src={"/img/frame11.svg"} alt="no img found" width={190} height={180}></Image>
-                        </CardHeader>
-                        <CardContent>
-                            <h2 className="font-medium pt-3">GP11 Shooter USB Gamepad</h2>
-                            <p className="text-mysecondary font-medium">$560</p>
-                            <div className="stars w-[140px] flex pt-2">
-                                <Image src={"/icons/fillstar.svg"} alt='no icon found' height={18} width={18}></Image>
-                                <Image src={"/icons/fillstar.svg"} alt='no icon found' height={18} width={18}></Image>
-                                <Image src={"/icons/fillstar.svg"} alt='no icon found' height={18} width={18}></Image>
-                                <Image src={"/icons/fillstar.svg"} alt='no icon found' height={18} width={18}></Image>
-                                <Image src={"/icons/fillstar.svg"} alt='no icon found' height={18} width={18}></Image>
-
-                                <p className="text-gray-600">(89)</p>
-                            </div>
-
-                        </CardContent>
                     </Card>
-                    <Card className="overflow-hidden w-[270px] mt-10">
-                        <CardHeader className="w-[270px] h-[250px] bg-myGray flex justify-center items-center relative">
+                    <Card className="overflow-hidden w-[350px] h-[500px] mt-10 bg-gray-400 animate-pulse duration-1000">
 
-                            <Button className="absolute top-2 right-2 max-sm:right-4 rounded-full" variant={"secondary"} size={"sm"}>
-                                <Image src={"/icons/eye.svg"} alt="no icon found" width={24} height={24}></Image>
-                            </Button>
-                            <Button className="absolute bottom-0 left-0 w-full h-[41px] rounded-none font-medium ">
-                                Add to cart
-                            </Button>
-
-                            <Image src={"/img/frame12.svg"} alt="no img found" width={190} height={180}></Image>
-                        </CardHeader>
-                        <CardContent>
-                            <h2 className="font-medium pt-3">Quilted Satin Jacket</h2>
-                            <p className="text-mysecondary font-medium">$740</p>
-                            <div className="stars w-[140px] flex pt-2">
-                                <Image src={"/icons/fillstar.svg"} alt='no icon found' height={18} width={18}></Image>
-                                <Image src={"/icons/fillstar.svg"} alt='no icon found' height={18} width={18}></Image>
-                                <Image src={"/icons/fillstar.svg"} alt='no icon found' height={18} width={18}></Image>
-                                <Image src={"/icons/fillstar.svg"} alt='no icon found' height={18} width={18}></Image>
-                                <Image src={"/icons/fillstar.svg"} alt='no icon found' height={18} width={18}></Image>
-
-                                <p className="text-gray-600">(89)</p>
-                            </div>
-
-                        </CardContent>
                     </Card>
-                </div>
+                </div> :
+                    <div className="items w-full mt-10 flex flex-wrap  max-sm:justify-center">
+                        {
+                            products.map((product, index) => {
+                                if (index <= 4) {
+                                    return <ProductCARD key={index} id={product.id} isDiscont={product.isDiscont} title={product.title} price={product.price} description={product.description} image={product.image} rate={product.rating.rate} count={product.rating.count} stock={product.stock} category={product.category} discount={product.discount} />
+                                }
+
+                            })
+
+                        }
+                    </div>}
 
             </div>
         </div>

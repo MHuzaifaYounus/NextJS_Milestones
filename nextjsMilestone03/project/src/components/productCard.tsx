@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Card,
   CardContent,
@@ -7,6 +7,11 @@ import {
 } from "@/components/ui/card"
 import Image from 'next/image'
 import { Button } from './ui/button'
+import Link from 'next/link'
+import { WishlistProducts } from '@/app/global'
+import product from '@/sanity/schemaTypes/product'
+
+
 
 
 interface Product {
@@ -20,21 +25,49 @@ interface Product {
   category: string,
   stock: number,
   isDiscont: boolean,
-  discount?:number,
+  discount?: number,
 
 }
 
 const ProductCARD = (params: Product) => {
+  const [isAddedtoWishList, setIsAddedtoWishList] = useState<boolean>(false)
+
+  function wishlistHandler(id: number) {
+    if (!WishlistProducts.find((productid) => productid === id)) {
+      WishlistProducts.push(id)
+      setIsAddedtoWishList(true)
+
+    }
+    else{
+      WishlistProducts.forEach((productId) => {
+        if (productId === params.id) {
+          WishlistProducts.splice(WishlistProducts.indexOf(productId),1)
+          setIsAddedtoWishList(false)
+        }
+      })
+    }
+   
+  }
   const [isHover, setIsHover] = useState<boolean>(false)
+
+  useEffect(() => {
+    WishlistProducts.forEach((productId) => {
+      if (productId === params.id) {
+        setIsAddedtoWishList(true)
+      }
+    })
+  }, [isAddedtoWishList])
+
   return (
-    <Card className="overflow-hidden w-[270px] mt-10" onMouseEnter={() => { setIsHover(true) }} onMouseLeave={() => { setIsHover(false) }}>
+
+    <Card className="overflow-hidden w-[270px] mt-10 sm-ml-4" onMouseEnter={() => { setIsHover(true) }} onMouseLeave={() => { setIsHover(false) }}>
       <CardHeader className="w-[270px] h-[250px] bg-myGray flex justify-center items-center relative">
         {params.isDiscont && <Button className="absolute top-2 left-2 bg-mysecondary" size={"sm"}>-{params?.discount}%</Button>}
-        <Button className="absolute top-2 right-2 max-sm:right-4 rounded-full" variant={"secondary"} size={"sm"}>
+        <Button onClick={() => { wishlistHandler(params.id) }} className={`absolute top-2 right-2 max-sm:right-4 rounded-full  hover:scale-110 transition-all ${isAddedtoWishList && "bg-mysecondary hover:bg-mysecondary"}`} variant={"secondary"} size={"sm"}>
           <Image src={"/icons/WishList.svg"} alt="no icon found" width={24} height={24}></Image>
         </Button>
         <Button className={`absolute opacity-0 bottom-[-40px] left-0 w-full h-[41px] rounded-none font-medium transition-all duration-300 ${isHover && "opacity-100 bottom-0"}`}>
-          View More
+          <Link href={`/products/${params.id}`}>View More</Link>
         </Button>
 
         <Image src={params.image} alt="no img found" width={190} height={180}></Image>
@@ -43,7 +76,7 @@ const ProductCARD = (params: Product) => {
         <h2 className="font-medium">{params.title}</h2>
         <p className="text-mysecondary font-medium">{(params.price - Math.floor(params.price * (params?.discount || 0)) / 100).toFixed(2)} {params.isDiscont && <span className="text-gray-600 line-through">${params.price}</span>}</p>
         <div className="stars w-[140px] flex">
-          {Array.from({ length: Number((params.rate)) }).map((_,index) => (
+          {Array.from({ length: Number((params.rate)) }).map((_, index) => (
             <Image key={index} src={"/icons/fillstar.svg"} alt='no icon found' height={15} width={15}></Image>
 
           ))}
@@ -60,6 +93,7 @@ const ProductCARD = (params: Product) => {
 
       </CardContent>
     </Card>
+
   )
 }
 

@@ -10,10 +10,12 @@ import Link from "next/link";
 
 
 
+
 export default function Home() {
- 
+
   return (
-    <div>
+
+    <div >
       <div className="slider w-full min-h-[500px] pb-14 pt-10">
         <div className="container m-auto w-[79%]  flex justify-evenly items-center max-2xl:min-w-full bg-black min-h-[544px] text-white max-lg:w-[350px] max-lg:flex-col  max-sm:w-[80%]">
           <div className="text min-h-[350px] flex flex-col justify-between max-sm:w-full mt-10 max-sm:items-center ">
@@ -227,7 +229,7 @@ export default function Home() {
       </div>
 
 
-
     </div>
+
   );
 }
