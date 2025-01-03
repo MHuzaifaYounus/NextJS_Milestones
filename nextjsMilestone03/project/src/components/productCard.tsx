@@ -9,7 +9,6 @@ import Image from 'next/image'
 import { Button } from './ui/button'
 import Link from 'next/link'
 import { WishlistProducts } from '@/app/global'
-import product from '@/sanity/schemaTypes/product'
 
 
 
