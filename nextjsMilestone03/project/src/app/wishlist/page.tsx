@@ -7,18 +7,6 @@ import ProductCARD from '@/components/productCard';
 import { Card } from '@/components/ui/card';
 
 
-interface Products {
-    id: number,
-    title: string,
-    price: number,
-    description: string,
-    image: string,
-    rating: { rate: number, count: number }
-    category: string,
-    stock: number,
-    isDiscont: boolean,
-    discount?: number
-}
 
 const WishList = () => {
 
@@ -69,7 +57,7 @@ const WishList = () => {
         <div>
             <div className="section1 w-[79%] pt-10 m-auto pb-20 max-sm:w-[90%]">
                 <div className="title w-full flex justify-between items-center">
-                    <h1 className='text-xl'>WishList(4)</h1>
+                    <h1 className='text-xl'>WishList({wishlistproducts.length})</h1>
                     <Button className='w-[223px] h-[56px] border border-gray-400 font-semibold max-sm:w-[120px] max-sm:h-[40px] max-sm:p-4' variant={"secondary"}>Move All To Bag</Button>
                 </div>
                 {isLoading ? <div className="items w-full mt-10 flex flex-wrap justify-between max-sm:justify-center">

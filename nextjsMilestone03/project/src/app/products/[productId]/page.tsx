@@ -4,28 +4,28 @@ import { client } from "@/sanity/lib/client";
 import Image from "next/image";
 import ProductCARD from "@/components/productCard";
 import { Card } from "@/components/ui/card";
+import { CartProducts } from "@/app/global";
 
-interface Product {
-    id: number,
-    title: string,
-    price: number,
-    description: string,
-    image: string,
-    rating: { rate: number, count: number }
-    category: string,
-    stock: number,
-    isDiscont: boolean,
-    discount?: number
-}
+
+
 
 const ProductPage = ({ params: { productId } }: { params: { productId: number } }) => {
-    const [product, setProduct] = useState<Product | null>(null)
-    const [similarProducts, setsimilarProducts] = useState<Product[]>([])
+    const [product, setProduct] = useState<Products | null>(null)
+    const [similarProducts, setsimilarProducts] = useState<Products[]>([])
     const [isLoading, setIsLoading] = useState<boolean>(true)
+    const [isAddedToCart, setIsAddedToCart] = useState<boolean>(false)
+
+    function addtoCart(id: number) {
+        if (!CartProducts.find((productid) => productid === id)) {
+            CartProducts.push(Number(id))
+            setIsAddedToCart(true)
+        }
+    }
+
     useEffect(() => {
         async function getProductData() {
 
-            const data: Product[] = await client.fetch(`*[id == ${productId}]{
+            const data: Products[] = await client.fetch(`*[id == ${productId}]{
           id,
           title,
           price,
@@ -42,7 +42,7 @@ const ProductPage = ({ params: { productId } }: { params: { productId: number } 
         }
         `)
             const category = data[0].category
-            const similarData: Product[] = await client.fetch(`*[category == $category && id != ${productId} ]{
+            const similarData: Products[] = await client.fetch(`*[category == $category && id != ${productId} ]{
             id,
             title,
             price,
@@ -68,6 +68,13 @@ const ProductPage = ({ params: { productId } }: { params: { productId: number } 
 
         getProductData()
 
+    }, [])
+    useEffect(() => {
+        CartProducts.forEach((id) => {
+            if (id === productId) {
+                setIsAddedToCart(true)
+            }
+        })
     }, [])
 
     return (
@@ -144,7 +151,7 @@ const ProductPage = ({ params: { productId } }: { params: { productId: number } 
                         {/* Price and Rating */}
                         <div className="px-4 py-2">
                             <div className="flex  flex-col justify-between">
-                                <span className="text-3xl font-bold ">Rs:{product?.price}</span>
+                                <span className="text-3xl font-bold ">${product?.price}</span>
                                 <div className="flex items-center pt-4">
                                     {Array.from({ length: Number((product?.rating.rate)) }).map((_, index) => (
                                         <Image key={index} src={"/icons/fillstar.svg"} alt='no icon found' height={15} width={15}></Image>
@@ -158,13 +165,7 @@ const ProductPage = ({ params: { productId } }: { params: { productId: number } 
                         {/* Add to cart */}
                         <div className="px-4 py-4">
                             <div className="flex items-center">
-                                <input
-                                    type="number"
-                                    min="1"
-                                    defaultValue="1"
-                                    className="w-12 h-[50px] text-center border border-gray-300 rounded-md"
-                                />
-                                <button className="ml-4 px-4 py-2 h-[50px] bg-primary_colortext-white text-sm font-medium rounded-md bg-mysecondary text-white">
+                                <button className={`px-4 py-2 h-[50px] bg-primary_colortext-white text-sm font-medium rounded-md ${isAddedToCart ? "bg-gray-300" : "bg-mysecondary"} text-white`} onClick={() => { addtoCart(productId) }}>
                                     Add to cart
                                 </button>
                             </div>
@@ -200,7 +201,7 @@ const ProductPage = ({ params: { productId } }: { params: { productId: number } 
                         <h3 className="text-lg font-bold text-gray-800">Key Benefits</h3>
                         <ul className="list-disc pl-5 text-gray-700 mt-2 space-y-1">
                             <li>Category: {product?.category}</li>
-                            <li>Discount: {product?.discount}%</li>
+                            <li>Discount: {(product?.discount) || 0}%</li>
                             <li>Ratings: {product?.rating.rate} </li>
                             <li>Reviews: {product?.rating.count}</li>
                             <li>Best Price</li>
@@ -211,13 +212,13 @@ const ProductPage = ({ params: { productId } }: { params: { productId: number } 
                     <div className="mt-10">
                         <h3 className="text-lg font-bold text-gray-800">Similar Products</h3>
                         <div className="grid grid-cols-4 max-xl:grid-cols-3 max-md:grid-cols-2 max-sm:flex max-sm:flex-col max-sm:items-center gap-4 mt-4 ">
-                            {(similarProducts.length === 0) ? 
-                            <div className="w-full h-[300px] flex justify-center items-center">
-                                <h1 className="text-xl text-gray-400">No Similar Products Found</h1>
-                            </div> : 
-                            similarProducts.map((item, index) => {
-                                return <ProductCARD key={index} id={item.id} isDiscont={item.isDiscont} title={item.title} price={item.price} description={item.description} image={item.image} rate={item.rating.rate} count={item.rating.count} stock={item.stock} category={item.category} discount={item.discount} />
-                            })}
+                            {(similarProducts.length === 0) ?
+                                <div className="w-full h-[300px] flex justify-center items-center">
+                                    <h1 className="text-xl text-gray-400">No Similar Products Found</h1>
+                                </div> :
+                                similarProducts.map((item, index) => {
+                                    return <ProductCARD key={index} id={item.id} isDiscont={item.isDiscont} title={item.title} price={item.price} description={item.description} image={item.image} rate={item.rating.rate} count={item.rating.count} stock={item.stock} category={item.category} discount={item.discount} />
+                                })}
                         </div>
                     </div>
                 </div>

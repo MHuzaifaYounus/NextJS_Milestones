@@ -22,7 +22,7 @@ export default function Home() {
             <span className="text-3xl ">SOLOVERA .</span>
             <h1 className="text-6xl font-semibold w-[394px] max-sm:text-4xl max-sm:w-[80%] max-sm:text-center">Shop Smart, Live Better</h1>
             <p className="text-2xl text-gray-300 max-sm:w-[90%] max-sm:text-lg max-sm:text-center ">Your One-Stop Destination for Everything You Love!</p>
-            <Button className='bg-mysecondary text-white hover:text-black w-[150px] h-[50px]' variant={"secondary"} color='black'>Read More</Button>
+            <Button className='bg-mysecondary text-white hover:text-black w-[150px] h-[50px]' variant={"secondary"} color='black'><Link href={"/contact"}>Contact Us</Link></Button>
           </div>
           <div className="img min-h-[350px] mt-10">
             <Image src={"/img/hero1.png"} alt="no img found" width={500} height={900}></Image>
@@ -142,7 +142,7 @@ export default function Home() {
             </div>
 
           </div>
-          <Button className="bg-mysecondary h-[56px] w-[171px] font-medium max-sm:h-[50px] max-sm:w-[150px]">Buy Now</Button>
+          <Button className="bg-mysecondary h-[56px] w-[171px] font-medium max-sm:h-[50px] max-sm:w-[150px]"><Link href={"/products/1"}>Buy Now</Link></Button>
         </div>
         <div className="img   w-[60%] min-h-[500px] flex justify-center items-center max-lg:w-full max-sm:h-[350px] relative">
           <div className="shine absolute w-[80%] h-[80%] blur-3xl rounded-full opacity-45 bg-white"></div>
@@ -168,7 +168,7 @@ export default function Home() {
             <div className="absolute left-10 bottom-10 w-[242px] text h-[122px] flex flex-col justify-between items-start text-white">
               <h1 className="text-2xl font-semibold">PlayStation 5</h1>
               <p className="text-sm">Black and White version of the PS5 coming out on sale.</p>
-              <button className="font-medium underline">Shop Now</button>
+              <button className="font-medium underline"><Link href={"/products/5"}>Shop Now</Link></button>
             </div>
             <Image src={"/img/frame61.svg"} alt="no img found" width={511} height={511}></Image>
           </div>
@@ -176,7 +176,7 @@ export default function Home() {
             <div className="absolute left-10 bottom-10 w-[242px] text h-[122px] flex flex-col justify-between items-start text-white">
               <h1 className="text-2xl font-semibold">Laptops Collection</h1>
               <p className="text-sm">Featured Another level of Quality Products</p>
-              <button className="font-medium underline">Shop Now</button>
+              <button className="font-medium underline"><Link href={"/products/2"}>Shop Now</Link></button>
             </div>
             <Image src={"/img/frame62.jpg"} alt="no img found" width={432} height={266}></Image>
           </div>
@@ -184,7 +184,7 @@ export default function Home() {
             <div className="absolute left-10 max-xl:left-5 bottom-10 w-[242px] text h-[85px] flex flex-col justify-between items-start text-white">
               <h1 className="text-2xl font-semibold">Speakers</h1>
               <p className="text-sm">Amazon wireless speakers</p>
-              <button className="font-medium underline">Shop Now</button>
+              <button className="font-medium underline"><Link href={"/products/8"}>Shop Now</Link></button>
             </div>
             <Image src={"/img/frame63.svg"} alt="no img found" width={210} height={222}></Image>
           </div>
@@ -192,7 +192,7 @@ export default function Home() {
             <div className="absolute left-10 max-xl:left-5 bottom-10 w-[242px] text h-[85px] flex flex-col justify-between items-start text-white">
               <h1 className="text-2xl font-semibold">Perfume</h1>
               <p className="text-sm">GUCCI INTENSE OUD EDP</p>
-              <button className="font-medium underline">Shop Now</button>
+              <button className="font-medium underline"><Link href={"/products/9"}>Shop Now</Link></button>
             </div>
             <Image src={"/img/frame64.svg"} alt="no img found" width={210} height={222}></Image>
           </div>

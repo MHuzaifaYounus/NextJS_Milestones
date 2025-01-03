@@ -1,4 +1,5 @@
-import React from 'react'
+"use client"
+import React, { useEffect } from 'react'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -10,10 +11,17 @@ import { Slash } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
+import { CheckoutProducts } from '../global'
 
 
 
 const CheckOut = () => {
+
+  useEffect(() => {
+    console.log(CheckoutProducts);
+
+  }, [])
+
   return (
     <div className='pt-20 w-[79%] m-auto max-xl:w-[90%] max-sm:w-[95%]'>
       <Breadcrumb>
@@ -121,7 +129,7 @@ const CheckOut = () => {
             <Button className='bg-mysecondary h-[56px] w-[211px] font-medium max-sm:w-[100px] max-sm:h-[40px] text-xs'>Apply Coupon</Button>
           </div>
           <Button className='bg-mysecondary h-[56px] w-[211px] font-medium max-sm:w-[100px] max-sm:h-[40px] text-xs'>Place Order</Button>
-          
+
         </div>
       </div>
     </div>
